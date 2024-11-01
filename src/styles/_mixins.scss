@@ -1,0 +1,17 @@
+@mixin inner-border($color) {
+    box-shadow: 0px 0px 0px 1px $color inset;
+}
+
+@mixin base-shadow($dark, $light) {
+    border-left: 1px solid $light;
+    border-top: 1px solid $light;
+    border-right: 1px solid $dark;
+    border-bottom: 1px solid $dark;
+}
+
+@mixin invert-shadow($dark, $light) {
+    border-left: 1px solid $dark;
+    border-top: 1px solid $dark;
+    border-right: 1px solid $light;
+    border-bottom: 1px solid $light;
+}
