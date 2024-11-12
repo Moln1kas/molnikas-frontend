@@ -1,72 +1,68 @@
-<script lang="ts">
-    export default {
-        props: {
-            title: String,
-            resize: Boolean,
-            color: String,
-            posX: Number,
-            posY: Number
-        },
-        data(): {
-            width: number,
-            height: number,
+<script setup lang="ts">
+    import { defineProps, onMounted, onUnmounted, reactive } from 'vue';
 
-            x: number,
-            y: number,
+    const props = defineProps({
+        title: String,
+        resize: Boolean,
+        color: String,
+        posX: Number,
+        posY: Number,
+    });
+    
+    const state = reactive({
+        width: 0,
+        height: 0,
+        x: 0,
+        y: 0,
+        seen: true,
+    });
 
-            seen: Boolean
-        } {
-            return {
-                width: 0,
-                height: 0,
+    onMounted(() => {
+        updatePositions();
+        window.addEventListener('load', updatePositions);
+        window.addEventListener("resize", updatePositions);
+    });
+    onUnmounted(() => {
+        window.removeEventListener("resize", updatePositions);
+    });
 
-                x: 0,
-                y: 0,
+    /**
+     * Updates the positions of all windows on the screen.
+     */
+    const updatePositions = () => {
+        const block: HTMLElement | null = document.querySelector('.vdr');
+        if (!block) return;
 
-                seen: true
-            }
-        },
-        mounted() {
-            this.updatePositions()
-            window.addEventListener('load', this.updatePositions)
-            window.addEventListener("resize", this.updatePositions)
-        },
-        unmounted() {
-            window.removeEventListener("resize", this.updatePositions)
-        },
-        methods: {
-            updatePositions() {
-                const block: HTMLElement | null = document.querySelector('.vdr')
-                if (block) {
-                    this.width  = block.offsetWidth
-                    this.height = block.offsetHeight
+        state.width  = block.offsetWidth;
+        state.height = block.offsetHeight;
 
-                    this.x = Math.max(0, (window.innerWidth - this.width) / 2 + (this.posX || 0))
-                    this.y = Math.max(0, (window.innerHeight - this.height) / 2 + (this.posY || 0))
-                }
-            },
-            closeWindow() {
-                this.seen = false
-            },
-            getWindowColor() {
-                return '--' + (this.color || 'accent')
-            }
-        }
+        state.x = Math.max(0, (window.innerWidth - state.width) / 2 + (props.posX || 0));
+        state.y = Math.max(0, (window.innerHeight - state.height) / 2 + (props.posY || 0));
+    }
+
+    const closeWindow = () => {
+        state.seen = false;
+    }
+    /**
+     * Getting a formatted color for css.
+     */
+    const getWindowColor = () => {
+        return '--' + (props.color || 'accent');
     }
 </script>
 
 <template>
     <vue-draggable-resizable 
-        :min-width="width"
-        :min-height="height"
+        :min-width="state.width"
+        :min-height="state.height"
         :resizable="resize"
         :drag-handle="'.drag-handle'"
         :h="'auto'"
         :w="'auto'"
-        :x="x"
-        :y="y"
+        :x="state.x"
+        :y="state.y"
         :parent="true"
-        v-if="seen"
+        v-if="state.seen"
     >
         <div class="window">
             <header class="window-header drag-handle" :style="{'background': `var(${getWindowColor()})`}">
