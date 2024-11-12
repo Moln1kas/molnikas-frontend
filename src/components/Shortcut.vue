@@ -1,22 +1,13 @@
-<script>
-    import Window from './Window.vue'
-    export default {
-        props: {
-            title: String
-        },
-        methods: {
-            callWindow() {
-                document.body.appendChild(Window)
-            }
-        },
-        components: { Window }
-    }
+<script setup lang="ts">
+    const props = defineProps({
+        title: String,
+    });
 </script>
 
 <template>
-    <div class="shortcut" @click="callWindow()">
+    <div class="shortcut">
         <img class="shortcut-icon" src="../assets/file.svg" width="64px" height="64px">
-        <p class="shortcut-title">{{ title }}</p>
+        <p class="shortcut-title">{{ props.title }}</p>
     </div>
 </template>
 
