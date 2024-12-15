@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    body {
+        @apply font-mono;
+    }
+    h1,h2,h3,h4 {
+        @apply mb-2 mt-2 text-lg text-foreground;
+    }
+    p, a {
+        @apply mb-1.5 mt-1.5 text-sm;
+    }
+    button {
+        @apply flex justify-center items-center w-full p-1 shadow-[inset_0_0_0_1px_black] bg-foregroundPrimary text-sm text-border hover:bg-foreground active:active:shadow-[inset_0_0_0_1px_white];
+    }
+}

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-    import Window from './components/Window.vue';
-    import DynamicWindow from './components/DynamicWindow.vue';
-    import { newWindow } from './scripts/dynamicWindowLogic';
-    import Config from '../config.json';
+    import Window from '../components/Window.vue';
+    import DynamicWindow from '../components/WindowsManager.vue';
+    import { newWindow } from '../scripts/dynamicWindowLogic';
+    import Config from '../../config.json';
 
     import { reactive, ref } from 'vue';
     import { useRouter } from 'vue-router';
@@ -18,16 +18,16 @@
     const window: any = ref(null);
 
     const tryLogin = () => {
-        if(state.name.length === 0 || state.pass.length === 0) return newWindow('Ошибка', '<p>Заполните все текстовые поля.</p>', 'error');
+        if(state.name.length === 0 || state.pass.length === 0) return newWindow('Ошибка', '<p>Заполните все текстовые поля.</p>', 100, 100, 'error');
 
         const data = { username: state.name, password: state.pass }
         axios.post(`${Config.apiAddr}/api/admin/login`, data)
         .then(res => {
             localStorage.setItem('token', res.data.token);
-            router.push('/admin/dashboard')
+            router.push('/admin/dashboard');
         })
         .catch(err => {
-            newWindow('Ошибка', `<p>${err.response.data.message}</p`, 'error');
+            newWindow('Ошибка', `<p>${err.response.data.message}</p`, 100, 100, 'error');
         });
     }
 </script>

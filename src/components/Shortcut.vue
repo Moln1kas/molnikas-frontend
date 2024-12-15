@@ -1,36 +1,37 @@
 <script setup lang="ts">
+    import file from '../assets/file.svg';
+    import chat from '../assets/chat.svg';
+    import blog from '../assets/blog.svg';
+    import music from '../assets/music.svg';
+    import human from '../assets/human.svg';
+    import admin from '../assets/admin.svg';
+    import terminal from '../assets/terminal.svg';
+    import desktop from '../assets/desktop.svg';
+
     const props = defineProps({
         title: String,
+        icon: String
     });
+
+    const icons = {
+        file: file,
+        chat: chat,
+        blog: blog,
+        music: music,
+        human: human,
+        admin: admin,
+        terminal: terminal,
+        desktop: desktop,
+    }
+
+    const getIcon = () => {
+        return icons[props.icon || file];
+    };
 </script>
 
 <template>
-    <div class="shortcut">
-        <img class="shortcut-icon" src="../assets/file.svg" width="64px" height="64px">
-        <p class="shortcut-title">{{ props.title }}</p>
+    <div class='flex flex-col justify-center items-center cursor-pointer hover:bg-accent'>
+        <img class='mb-2' :src='getIcon()' width="52px" height="52px">
+        <p class='w-full text-foregroundPrimary text-center m-0 overflow-hidden'>{{ props.title }}</p>
     </div>
 </template>
-
-<style lang="scss">
-    @import '../styles/variables';
-
-    .shortcut {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        cursor: pointer;
-    }
-
-    .shortcut-title {
-        width: 100%;
-        color: var(--foreground);
-        text-align: center;
-        margin: 0;
-    }
-
-    .shortcut:hover {
-        .shortcut-title {
-            background: var(--accent);
-        }
-    }
-</style>

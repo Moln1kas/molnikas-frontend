@@ -1,3 +1,39 @@
-<svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M5.99796 0L0 5.99796L3.06279 9.06076L10.6347 16.7603L3.06279 24.3322L0 27.2673L5.99796 33.3929L9.06076 30.3301L16.7603 22.6306L24.3322 30.3301L27.2673 33.3929L33.3929 27.2673L30.3301 24.3322L22.6306 16.7603L30.3301 9.06076L33.3929 5.99796L27.2673 0L24.3322 3.06279L16.7603 10.6347L9.06076 3.06279L5.99796 0Z" fill="black"/>
+<?xml version="1.0" encoding="UTF-8" ?>
+<svg version="1.1" width="16" height="16" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
+<rect x="5" y="4" width="1" height="1" fill="#000000" />
+<rect x="6" y="4" width="1" height="1" fill="#000000" />
+<rect x="9" y="4" width="1" height="1" fill="#000000" />
+<rect x="10" y="4" width="1" height="1" fill="#000000" />
+<rect x="5" y="5" width="1" height="1" fill="#000000" />
+<rect x="6" y="5" width="1" height="1" fill="#000000" />
+<rect x="9" y="5" width="1" height="1" fill="#000000" />
+<rect x="10" y="5" width="1" height="1" fill="#000000" />
+<rect x="5" y="6" width="1" height="1" fill="#000000" />
+<rect x="6" y="6" width="1" height="1" fill="#000000" />
+<rect x="7" y="6" width="1" height="1" fill="#000000" />
+<rect x="8" y="6" width="1" height="1" fill="#000000" />
+<rect x="9" y="6" width="1" height="1" fill="#000000" />
+<rect x="10" y="6" width="1" height="1" fill="#000000" />
+<rect x="6" y="7" width="1" height="1" fill="#000000" />
+<rect x="7" y="7" width="1" height="1" fill="#000000" />
+<rect x="8" y="7" width="1" height="1" fill="#000000" />
+<rect x="9" y="7" width="1" height="1" fill="#000000" />
+<rect x="6" y="8" width="1" height="1" fill="#000000" />
+<rect x="7" y="8" width="1" height="1" fill="#000000" />
+<rect x="8" y="8" width="1" height="1" fill="#000000" />
+<rect x="9" y="8" width="1" height="1" fill="#000000" />
+<rect x="5" y="9" width="1" height="1" fill="#000000" />
+<rect x="6" y="9" width="1" height="1" fill="#000000" />
+<rect x="7" y="9" width="1" height="1" fill="#000000" />
+<rect x="8" y="9" width="1" height="1" fill="#000000" />
+<rect x="9" y="9" width="1" height="1" fill="#000000" />
+<rect x="10" y="9" width="1" height="1" fill="#000000" />
+<rect x="5" y="10" width="1" height="1" fill="#000000" />
+<rect x="6" y="10" width="1" height="1" fill="#000000" />
+<rect x="9" y="10" width="1" height="1" fill="#000000" />
+<rect x="10" y="10" width="1" height="1" fill="#000000" />
+<rect x="5" y="11" width="1" height="1" fill="#000000" />
+<rect x="6" y="11" width="1" height="1" fill="#000000" />
+<rect x="9" y="11" width="1" height="1" fill="#000000" />
+<rect x="10" y="11" width="1" height="1" fill="#000000" />
 </svg>

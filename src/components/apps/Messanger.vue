@@ -1,3 +1,2 @@
-<template>
-    <p>К сожалению тут пока ничего нет.</p>
-</template>
+<script setup lang="ts"></script>
+<template></template>

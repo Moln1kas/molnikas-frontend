@@ -1,144 +1,92 @@
 <script setup lang="ts">
-    import { defineProps, onMounted, onUnmounted, reactive } from 'vue';
+    import { defineProps, onMounted, onUnmounted, reactive, ref } from 'vue';
 
     const props = defineProps({
-        title: String,
+        title : String,
         resize: Boolean,
-        color: String,
-        posX: Number,
-        posY: Number,
+        width : Number,
+        height: Number,
+        color : String,
+        posX  : Number,
+        posY  : Number,
     });
     
     const state = reactive({
-        width: 0,
-        height: 0,
-        x: 0,
-        y: 0,
         seen: true,
     });
 
+    const isCompact = ref(false);
+
     onMounted(() => {
         updatePositions();
+        checkDevice();
         window.addEventListener('load', updatePositions);
         window.addEventListener("resize", updatePositions);
     });
-    onUnmounted(() => {
-        window.removeEventListener("resize", updatePositions);
-    });
+
+    const checkDevice = () => {
+        isCompact.value = window.innerWidth <= 768;
+    };
 
     /**
      * Updates the positions of all windows on the screen.
      */
     const updatePositions = () => {
-        const block: HTMLElement | null = document.querySelector('.vdr');
-        if (!block) return;
-
-        state.width  = block.offsetWidth;
-        state.height = block.offsetHeight;
-
-        state.x = Math.max(0, (window.innerWidth - state.width) / 2 + (props.posX || 0));
-        state.y = Math.max(0, (window.innerHeight - state.height) / 2 + (props.posY || 0));
+        checkDevice();
     }
 
     const closeWindow = () => {
         state.seen = false;
     }
-    /**
-     * Getting a formatted color for css.
-     */
-    const getWindowColor = () => {
-        return '--' + (props.color || 'accent');
-    }
 </script>
 
 <template>
     <vue-draggable-resizable 
-        :min-width="state.width"
-        :min-height="state.height"
         :resizable="resize"
         :drag-handle="'.drag-handle'"
-        :h="'auto'"
-        :w="'auto'"
-        :x="state.x"
-        :y="state.y"
         :parent="true"
-        v-if="state.seen"
+        :w="props.width"
+        :h="props.height"
+        v-if="!isCompact && state.seen"
     >
-        <div class="window">
-            <header class="window-header drag-handle" :style="{'background': `var(${getWindowColor()})`}">
-                <div class="window-title">{{ title }}</div>
-                <div class="window-action-container">
-                    <button class="window-action" @click="closeWindow"><img src="../assets/underline.svg" width="8px"></button>
-                    <button class="window-action" @click="closeWindow"><img src="../assets/square.svg" width="8px"></button>
-                    <button class="window-action" @click="closeWindow"><img src="../assets/cross.svg" width="8px"></button>
+        <div class='h-full bg-background shadow-[inset_0_0_0_1px_black] overflow-hidden flex flex-col'>
+            <header :class="`bg-accent select-none text-foregroundPrimary flex p-2 ps-3 pe-3 text-sm drag-handle shadow-[inset_0_0_0_1px_black] active:shadow-[inset_0_0_0_1px_white] cursor-pointer active:cursor-move sticky top-0 z-10`">
+                <div class='w-full p-0.5 text-sm'>{{ title }}</div>
+                <div class='w-full flex justify-end'>
+                    <button class='w-9 h-6 p-0.5 text-xs bg-foregroundPrimary text-background' @click="closeWindow">
+                        <img src="../assets/cross.svg" width="18px">
+                    </button>
                 </div>
             </header>
-            <div class="window-content">
-                <slot></slot>
+            <div class='flex-1 overflow-y-auto p-3 text-foregroundPrimary box-border'>
+                <slot />
             </div>
         </div>
     </vue-draggable-resizable>
+
+    <div class='fixed flex flex-col w-full h-full bg-background' v-if="isCompact && state.seen">
+        <div class='p-3 text-foregroundPrimary h-full overflow-y-auto'>
+            <slot />
+        </div>
+        <div class='flex p-2 ps-3 pe-3 mt-auto bg-backgroundPrimary border-t'>
+            <button class='w-10 h-7 p-0.5 text-xs' @click="closeWindow"><img src="../assets/cross.svg" width="18px"></button>
+            <div class='w-full flex justify-end items-center p-0.5 text-base text-foregroundPrimary'>{{ title }}</div>
+        </div>
+    </div>
 </template>
 
-<style lang="scss">
+<style>
     @import "vue-draggable-resizable/style.css";
-    @import '../styles/variables';
-    @import '../styles/mixins';
 
     .vdr {
         border: none;
     }
 
-    .window {
-        height: 100%;
-        background: var(--background);
-
-        @include inner-border(#000);
-    }
-
-    .window-header {
-        user-select: none;
-        color: var(--foreground);
-        display: flex;
-        padding: 4px 4px 4px 4px;
-
-        font-size: 14px;
-
-        @include inner-border(#000);
-    }
-
-    .window-action-container {
-        width: 100%;
-        display: flex;
-        justify-content: flex-end;
-    }
-
-    .window-action {
-        width: 24px;
-        height: 22px;
-        padding: 2px 0;
-        margin: 0 0 0 2px;
-        font-size: 12px;
-        background: var(--foreground);
-        color: var(--background);
-    }
-
-    .window-title {
-        padding: 2px 0;
-        width: 100%;
-    }
-
-    .window-content {
-        padding: 0 4px 0.1px 4px;
-        color: var(--foreground);
-    }
-
     .handle {
-        background: #000;
+        background: black;
         border: none;
         width: 8px; height: 8px;
     }
-
     .handle-tl {
         top: 0;
         left: 0;
