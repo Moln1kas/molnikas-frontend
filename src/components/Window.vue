@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    import { onMounted, onUnmounted, reactive, ref } from 'vue';
+    import { onMounted, reactive, ref } from 'vue';
     import { colors } from '../../tailwind.config.js'
 
     const props = defineProps({

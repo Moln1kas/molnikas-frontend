@@ -63,7 +63,7 @@ import Terminal from '../components/apps/Terminal.vue';
         
         <Shortcut :title="'Админка'" :icon="'admin'" @click="
             axios.get(`${API_URI}/api/v1/admin`)
-                .then(res => {
+                .then(_res => {
                     newWindow('Админ', AdminPanel, 500, 300);
                 })
                 .catch(res => {
