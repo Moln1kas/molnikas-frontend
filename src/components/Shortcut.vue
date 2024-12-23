@@ -7,6 +7,7 @@
     import admin from '../assets/admin.svg';
     import terminal from '../assets/terminal.svg';
     import desktop from '../assets/desktop.svg';
+    import present from '../assets/present.svg';
 
     const props = defineProps({
         title: String,
@@ -22,6 +23,7 @@
         admin: admin,
         terminal: terminal,
         desktop: desktop,
+        present: present,
     }
 
     const getIcon = () => {

@@ -12,7 +12,13 @@
     p, a {
         @apply mb-1.5 mt-1.5 text-sm;
     }
+    a {
+        @apply text-foreground underline;
+    }
+    input {
+        @apply flex mb-1.5 justify-center items-center w-full p-1.5 shadow-[inset_0_0_0_1px_black] bg-foreground text-sm text-border placeholder-borderMedium focus:outline-none focus:ring-1 focus:ring-foregroundPrimary;
+    }
     button {
-        @apply flex justify-center items-center w-full p-1 shadow-[inset_0_0_0_1px_black] bg-foregroundPrimary text-sm text-border hover:bg-foreground active:active:shadow-[inset_0_0_0_1px_white];
+        @apply flex mb-4 mt-4 justify-center items-center w-full p-1.5 shadow-[inset_0_0_0_1px_black] bg-foregroundPrimary text-sm text-border hover:bg-foreground active:focus:ring-1 focus:ring-foregroundPrimary;
     }
 }

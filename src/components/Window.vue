@@ -1,5 +1,6 @@
 <script setup lang="ts">
-    import { defineProps, onMounted, onUnmounted, reactive, ref } from 'vue';
+    import { onMounted, onUnmounted, reactive, ref } from 'vue';
+    import { colors } from '../../tailwind.config.js'
 
     const props = defineProps({
         title : String,
@@ -12,6 +13,8 @@
     });
     
     const state = reactive({
+        centerX: 0,
+        centerY: 0,
         seen: true,
     });
 
@@ -33,6 +36,9 @@
      */
     const updatePositions = () => {
         checkDevice();
+
+        state.centerX = window.innerWidth/2;
+        state.centerY = window.innerHeight/2;
     }
 
     const closeWindow = () => {
@@ -45,15 +51,22 @@
         :resizable="resize"
         :drag-handle="'.drag-handle'"
         :parent="true"
+        :x="state.centerX - (props.posX || 0)"
+        :y="state.centerY - (props.posY || 0)"
         :w="props.width"
         :h="props.height"
         v-if="!isCompact && state.seen"
     >
         <div class='h-full bg-background shadow-[inset_0_0_0_1px_black] overflow-hidden flex flex-col'>
-            <header :class="`bg-accent select-none text-foregroundPrimary flex p-2 ps-3 pe-3 text-sm drag-handle shadow-[inset_0_0_0_1px_black] active:shadow-[inset_0_0_0_1px_white] cursor-pointer active:cursor-move sticky top-0 z-10`">
+            <header 
+                :class="'select-none text-foregroundPrimary flex p-2 ps-3 pe-3 text-sm drag-handle shadow-[inset_0_0_0_1px_black] cursor-pointer active:ring-1 active:ring-inset active:ring-foregroundPrimary active:cursor-move sticky top-0 z-10'" 
+                :style="{
+                    background: `${colors[props.color || 'accent']}`
+                }"
+            >
                 <div class='w-full p-0.5 text-sm'>{{ title }}</div>
                 <div class='w-full flex justify-end'>
-                    <button class='w-9 h-6 p-0.5 text-xs bg-foregroundPrimary text-background' @click="closeWindow">
+                    <button class='w-9 h-6 p-0.5 text-xs m-0 bg-foregroundPrimary text-background' @click="closeWindow">
                         <img src="../assets/cross.svg" width="18px">
                     </button>
                 </div>

@@ -1,2 +1,4 @@
 <script setup lang="ts"></script>
-<template></template>
+<template>
+    <p>Функционал не реализован.</p>
+</template>

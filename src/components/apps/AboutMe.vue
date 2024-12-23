@@ -22,9 +22,11 @@
     <!-- Art info -->
     <h3 class="text-center">Рисование</h3>
     <p>
-        Pixel art рисую с года так 2021. Пользуюсь замечательной, <strike>а главное open-source</strike> программой aseprite.
+        Pixel art рисую с года так 2021. Пользуюсь замечательной open-source программой - aseprite.
     </p>
     <p>
-        Простенькие арты рисую на графическом планшете xp-pen deco 01 v2 в krita, <strike>тоже open-source</strike>. 
+        Простенькие арты рисую на графическом планшете xp-pen deco 01 v2 в open-source'ной krita. 
     </p>
+    <!-- Arch btw -->
+    <h3 class="text-center">I use arch btw</h3>
 </template>

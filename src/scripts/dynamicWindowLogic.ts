@@ -12,14 +12,17 @@ type window = {
     posY?: number
 }
 
-const randomWithRange = (min: number, max: number) => {
-    return Math.floor(Math.random() * max + min)
-}
-
 export const windows = reactive<window[]>([]);
 
-export const newWindow = (title: string, content: Component | string, width: number, height: number, color?: string, posX?: number, posY?: number) => {
-    const range = 32;
+export const newWindow = (
+    title: string, 
+    content: Component | string, 
+    width: number, 
+    height: number, 
+    color?: string, 
+    posX?: number, 
+    posY?: number
+) => {
     let formattedContent: any;
 
     if(typeof(content) === 'object') formattedContent = markRaw(content); else formattedContent = content;
@@ -31,7 +34,7 @@ export const newWindow = (title: string, content: Component | string, width: num
         width    : width,
         height   : height,
         color    : color,
-        posX     : (posX || 0) + randomWithRange(-range, range),
-        posY     : (posY || 0) + randomWithRange(-range, range),
+        posX     : width/2 + (posX || 0),
+        posY     : height/2 + (posY || 0),
     })
 }
