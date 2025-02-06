@@ -1,6 +1,6 @@
 import {createRouter, createWebHistory} from 'vue-router';
 
-import Home  from './pages/Home.vue';
+import Desktop from './pages/Desktop.vue';
 // import Admin from './pages/Admin.vue';
 // import Dashboard from './pages/Dashboard.vue';
 import NotFound from './pages/NotFound.vue';
@@ -8,7 +8,7 @@ import NotFound from './pages/NotFound.vue';
 // import Axios from 'axios';
 
 const routes = [
-    {path: '', component: Home},
+    {path: '', component: Desktop},
     {path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound},
     // {path: '/admin', redirect: '/admin/dashboard', children: [
     //     {path: 'dashboard', component: Dashboard},

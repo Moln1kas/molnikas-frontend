@@ -1,7 +1,7 @@
 <script setup lang="ts">
     import Window from '../components/Window.vue';
     import DynamicWindow from '../components/WindowsManager.vue';
-    import { newWindow } from '../scripts/dynamicWindowLogic';
+    import { newWindow } from '../scripts/windowsManager';
     import Config from '../../config.json';
 
     import { reactive, ref } from 'vue';

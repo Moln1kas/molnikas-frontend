@@ -2,7 +2,7 @@
     export default {
         data(): {
             time: number
-        } {return{time: 5}},
+        } { return{time: 5} },
         mounted() {
             setInterval(() => {
                 if (this.time > 1) this.time--

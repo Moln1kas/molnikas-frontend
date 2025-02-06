@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    import { windows } from '../scripts/dynamicWindowLogic';
+    import { windows } from '../scripts/windowsManager';
 </script>
 
 <template>
