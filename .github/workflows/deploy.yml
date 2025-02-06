@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Debug SSH Key
+        run: echo "${{ secrets.SSH_PRIVATE_KEY }}" | wc -c
       - name: Checkout repository
         uses: actions/checkout@v2
 
