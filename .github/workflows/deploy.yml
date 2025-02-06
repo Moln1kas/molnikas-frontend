@@ -12,6 +12,7 @@ jobs:
     steps:
       - name: Debug SSH Key
         run: echo "${{ secrets.SSH_PRIVATE_KEY }}" | wc -c
+
       - name: Checkout repository
         uses: actions/checkout@v2
 
@@ -29,14 +30,26 @@ jobs:
       - name: Build project
         run: yarn build
 
-      - name: Deploy to Server
+      - name: Create tarball of dist folder
+        run: |
+          tar -czf /tmp/dist.tar.gz -C dist .
+
+      - name: Deploy tarball to Server
         uses: appleboy/scp-action@v0.1.4
         with:
           host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "dist/*"
-          target: "/var/www/molnikas.su/"
+          source: "/tmp/dist.tar.gz"
+          target: "/tmp/dist.tar.gz"
+
+      - name: Unpack files on server
+        run: |
+          ssh -i ${{ secrets.SSH_PRIVATE_KEY }} ${USER}@${{ secrets.SERVER_IP }} << 'EOF'
+            mkdir -p /var/www/molnikas.su
+            tar -xzf /tmp/dist.tar.gz -C /var/www/molnikas.su/
+            rm /tmp/dist.tar.gz
+          EOF
 
       - name: Restart NGINX
         uses: appleboy/ssh-action@v0.1.10
