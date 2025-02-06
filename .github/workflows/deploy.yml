@@ -30,8 +30,13 @@ jobs:
       - name: Build project
         run: yarn build
 
+      - name: List files in dist directory (debugging)
+        run: ls -la dist
+
       - name: Create tarball of dist folder
         run: |
+          ls -la dist
+          
           tar -czf /tmp/dist.tar.gz -C dist .
 
       - name: Deploy tarball to Server
