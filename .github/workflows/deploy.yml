@@ -36,7 +36,7 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           source: "dist/*"
-          target: "/var/www/molnikas.su/"
+          target: "/var/www/${{ secrets.SERVER_NAME }}/"
 
       - name: Restart NGINX
         uses: appleboy/ssh-action@v0.1.10
