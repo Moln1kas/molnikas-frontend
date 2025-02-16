@@ -11,13 +11,8 @@
     import Music from '../components/Music.vue';
     import AboutMe from '../components/AboutMe.vue';
     import AboutSite from '../components/AboutSite.vue';
-    import AdminLogin from '../components/Login.vue';
     import AdminPanel from '../components/AdminPanel.vue';
     import Terminal from '../components/Terminal.vue';
-
-    import axios from 'axios';
-
-    const API_URL = import.meta.env.VITE_API_URL;
 
     const gridWidth = ref(1);
     const gridHeight = ref(1);
@@ -30,22 +25,6 @@
 
 
     const openAdmin = () => {
-        // const headers = {
-        //     headers: {
-        //         'Authorization': 'a'
-        //     }
-        // };
-
-        // axios.get(`${API_URL}/admin/`, headers)
-        // .then(_res => {
-        //     newWindow('Админ', AdminPanel, 500, 300);
-        // })
-        // .catch(res => {
-        //     if(res.status == 403) return newWindow('Вход', AdminLogin, 300, 200);
-
-        //     newWindow('Админ-панель', `<p>Произошла ошибка на сервере.</p>`, 280, 100, 'error')
-        // });
-
         newWindow('Админ', AdminPanel, 500, 350)
     }
 
