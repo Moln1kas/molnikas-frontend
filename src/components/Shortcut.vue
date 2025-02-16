@@ -8,6 +8,7 @@
     import terminal from '../assets/terminal.svg';
     import desktop from '../assets/desktop.svg';
     import present from '../assets/present.svg';
+    import minecraft from '../assets/minecraft.svg';
 
     const props = defineProps({
         title: String,
@@ -24,6 +25,7 @@
         terminal: terminal,
         desktop: desktop,
         present: present,
+        minecraft: minecraft,
     }
 
     const getIcon = () => {

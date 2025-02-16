@@ -7,7 +7,7 @@
         @apply bg-backgroundPrimary w-screen h-screen m-0 overflow-hidden font-mono;
     }
     h1,h2,h3,h4 {
-        @apply mb-2 mt-2 text-lg text-foreground;
+        @apply mb-2 mt-2 text-lg text-foreground font-bold;
     }
     p, a {
         @apply mb-1.5 mt-1.5 text-sm;
@@ -20,5 +20,11 @@
     }
     button {
         @apply flex mb-4 mt-4 justify-center items-center w-full p-1.5 shadow-[inset_0_0_0_1px_black] bg-foregroundPrimary text-sm text-border hover:bg-foreground active:focus:ring-1 focus:ring-foregroundPrimary;
+    }
+    .redButton {
+        @apply bg-error text-foregroundPrimary hover:text-border
+    }
+    .blueButton {
+        @apply bg-accent text-foregroundPrimary hover:text-border
     }
 }

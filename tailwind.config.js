@@ -4,6 +4,7 @@ export const colors = {
   background: '#282828',
   backgroundPrimary: '#1D1F21',
 
+  foregroundDark: '#9a6b3b',
   foreground: '#C5C8C6',
   foregroundPrimary: '#EBDBB2',
   
